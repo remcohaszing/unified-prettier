@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "module": "node16",
+    "noEmit": true,
+    "strict": true,
+    "target": "es2022"
+  }
+}

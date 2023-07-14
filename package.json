@@ -1,0 +1,49 @@
+{
+  "name": "unified-prettier",
+  "version": "0.1.0",
+  "description": "A unified plugin to format output using Prettier",
+  "keywords": [
+    "prettier",
+    "rehype",
+    "rehype-plugin",
+    "remark",
+    "remark-plugin",
+    "unified",
+    "unified-plugin"
+  ],
+  "homepage": "https://github.com/remcohaszing/unified-prettier#readme",
+  "bugs": "https://github.com/remcohaszing/unified-prettier/issues",
+  "repository": "remcohaszing/unified-prettier",
+  "funding": "https://github.com/sponsors/remcohaszing",
+  "license": "MIT",
+  "author": "Remco Haszing <remcohaszing@gmail.com>",
+  "sideEffects": false,
+  "type": "module",
+  "exports": "./index.js",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "prepack": "tsc --noEmit false",
+    "test": "c8 tsx test.ts"
+  },
+  "dependencies": {
+    "@prettier/sync": "^0.2.0",
+    "unified": "^10.0.0"
+  },
+  "peerDependencies": {
+    "prettier": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "c8": "^8.0.0",
+    "remark-cli": "^11.0.0",
+    "remark-toc": "^8.0.0",
+    "tsx": "^3.0.0",
+    "typescript": "^5.0.0"
+  },
+  "overrides": {
+    "prettier": "^3.0.0"
+  }
+}
