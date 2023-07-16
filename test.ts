@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 
-import { FrozenProcessor, unified } from 'unified'
+import { type FrozenProcessor, unified } from 'unified'
 
 import unifiedPrettier from './index.js'
 
@@ -10,8 +10,22 @@ interface Root {
   value: string
 }
 
-function valueStringify(this: FrozenProcessor<void, Root, Root>) {
+function valueStringify(this: FrozenProcessor<void, Root, Root>): void {
   this.Compiler = (node) => node.value
+}
+
+function valueStringifyClass(this: FrozenProcessor<void, Root, Root>): void {
+  this.Compiler = class {
+    node: Root
+
+    constructor(node: Root) {
+      this.node = node
+    }
+
+    compile(): string {
+      return this.node.value
+    }
+  }
 }
 
 test('function compiler', () => {
@@ -25,19 +39,7 @@ test('function compiler', () => {
 
 test('class compiler', () => {
   const result = unified()
-    .use<[], Root>(function () {
-      this.Compiler = class {
-        node: Root
-
-        constructor(node: Root) {
-          this.node = node
-        }
-
-        compile() {
-          return this.node.value
-        }
-      }
-    })
+    .use(valueStringifyClass)
     .use(unifiedPrettier)
     .stringify({ type: 'root', value: '__example__\n\n' }, { path: 'markdown.md' })
 

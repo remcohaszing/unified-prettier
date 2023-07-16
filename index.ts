@@ -1,9 +1,13 @@
 import { resolve } from 'node:path'
-import { CompilerFunction, FrozenProcessor } from 'unified'
+
 // @ts-expect-error https://github.com/prettier/prettier-synchronized/pull/11
 import prettier from '@prettier/sync'
-import { Options } from 'prettier'
+import { type Options } from 'prettier'
+import { type CompilerFunction, type FrozenProcessor } from 'unified'
 
+/**
+ * @param options Options to pass to Prettier.
+ */
 function unifiedPrettier<Processor extends FrozenProcessor>(
   this: Processor,
   options?: Options | undefined
@@ -17,6 +21,7 @@ function unifiedPrettier<Processor extends FrozenProcessor>(
   this.Compiler = (tree, file) => {
     let content: unknown
     if (Compiler.prototype?.compile) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const compiler = new (Compiler as any)(tree, file)
       content = compiler.compile()
     } else {
