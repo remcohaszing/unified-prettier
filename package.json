@@ -29,7 +29,7 @@
     "test": "c8 tsx test.ts"
   },
   "dependencies": {
-    "@prettier/sync": "^0.2.0",
+    "@prettier/sync": "^0.3.0",
     "unified": "^10.0.0"
   },
   "peerDependencies": {

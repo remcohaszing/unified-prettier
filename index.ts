@@ -1,6 +1,5 @@
 import { resolve } from 'node:path'
 
-// @ts-expect-error https://github.com/prettier/prettier-synchronized/pull/11
 import prettier from '@prettier/sync'
 import { type Options } from 'prettier'
 import { type CompilerFunction, type FrozenProcessor } from 'unified'
@@ -41,7 +40,7 @@ function unifiedPrettier<Processor extends FrozenProcessor>(
 
     const config = prettier.resolveConfig(filepath, { editorconfig: true })
 
-    return prettier.format(content, { ...config, ...options, filepath })
+    return prettier.format(String(content), { ...config, ...options, filepath })
   }
 }
 
