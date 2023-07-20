@@ -27,8 +27,21 @@ npm install unified-prettier
 ## Usage
 
 This unified plugin takes content from another compiler, and reformats the output using Prettier.
-It’s intended to work with packages such as [`remark`](https://github.com/remarkjs/remark) or
-[`rehype`](https://github.com/rehypejs/rehype).
+It’s intended to work with
+[`unified-engine`](https://github.com/unifiedjs/unified-engine/blob/main/readme.md) implementations,
+such as [`remark-cli`](https://github.com/remarkjs/remark/tree/main/packages/remark-cli) and
+[`rehype-cli`](https://github.com/rehypejs/rehype/tree/main/packages/rehype-cli).
+
+In your [configuration file](https://github.com/unifiedjs/unified-engine/blob/main/doc/configure.md)
+file, add `unified-prettier` to the plugins:
+
+```json
+{
+  "plugins": ["unified-prettier"]
+}
+```
+
+It can also be used programmatically.
 
 The following example formats the readme using Prettier.
 
@@ -63,7 +76,7 @@ console.log(value)
 
 ## API
 
-The default export is a [remark](https://remark.js.org) plugin.
+The default export is a [unified](https://unifiedjs.com) plugin.
 
 ### Options
 
