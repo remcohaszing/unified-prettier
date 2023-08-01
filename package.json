@@ -26,7 +26,6 @@
     "worker.js"
   ],
   "scripts": {
-    "prepack": "tsc --noEmit false",
     "test": "c8 node --test"
   },
   "dependencies": {
