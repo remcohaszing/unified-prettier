@@ -1,6 +1,6 @@
 {
   "name": "unified-prettier",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A unified plugin to format output using Prettier",
   "keywords": [
     "prettier",
