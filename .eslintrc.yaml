@@ -2,4 +2,5 @@ root: true
 extends:
   - remcohaszing
 rules:
+  new-cap: off
   import/no-extraneous-dependencies: off

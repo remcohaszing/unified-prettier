@@ -22,14 +22,14 @@
   "exports": "./index.js",
   "files": [
     "index.js",
-    "index.d.ts"
+    "index.d.ts",
+    "worker.js"
   ],
   "scripts": {
     "prepack": "tsc --noEmit false",
-    "test": "c8 tsx test.ts"
+    "test": "c8 node --test"
   },
   "dependencies": {
-    "@prettier/sync": "^0.3.0",
     "unified": "^10.0.0"
   },
   "peerDependencies": {
@@ -42,10 +42,6 @@
     "eslint-config-remcohaszing": "^10.0.0",
     "remark-cli": "^11.0.0",
     "remark-toc": "^8.0.0",
-    "tsx": "^3.0.0",
     "typescript": "^5.0.0"
-  },
-  "overrides": {
-    "prettier": "^3.0.0"
   }
 }

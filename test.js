@@ -1,28 +1,37 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 
-import { type FrozenProcessor, unified } from 'unified'
+import { unified } from 'unified'
 
 import unifiedPrettier from './index.js'
 
-interface Root {
-  type: 'root'
-  value: string
-}
+/**
+ * @typedef Root
+ * @property {'root'} type
+ * @property {string} value
+ */
 
-function valueStringify(this: FrozenProcessor<void, Root, Root>): void {
+/**
+ * @this {import('unified').FrozenProcessor<void, Root, Root>}
+ */
+function valueStringify() {
   this.Compiler = (node) => node.value
 }
 
-function valueStringifyClass(this: FrozenProcessor<void, Root, Root>): void {
+/**
+ * @this {import('unified').FrozenProcessor<void, Root, Root>}
+ */
+function valueStringifyClass() {
   this.Compiler = class {
-    node: Root
-
-    constructor(node: Root) {
+    /**
+     * @param {Root} node
+     *   The node to compile.
+     */
+    constructor(node) {
       this.node = node
     }
 
-    compile(): string {
+    compile() {
       return this.node.value
     }
   }
@@ -77,5 +86,14 @@ test('error if there is no compiler', () => {
   assert.throws(
     () => unified().use(unifiedPrettier).freeze(),
     new Error('unified-prettier needs another compiler to be registered first')
+  )
+})
+
+test('handle errors', () => {
+  const processor = unified().use(valueStringify).use(unifiedPrettier)
+
+  assert.throws(
+    () => processor.stringify({ type: 'root', value: 'invalid(' }, { path: 'javascript.js' }),
+    /Unexpected token/
   )
 })
