@@ -2,8 +2,7 @@ import assert, { AssertionError } from 'node:assert/strict'
 import { test } from 'node:test'
 
 import { unified } from 'unified'
-
-import unifiedPrettier from './index.js'
+import unifiedPrettier from 'unified-prettier'
 
 /**
  * @typedef Root
