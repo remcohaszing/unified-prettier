@@ -1,3 +1,4 @@
+import assert from 'node:assert/strict'
 import { resolve } from 'node:path'
 import { MessageChannel, receiveMessageOnPort, Worker } from 'node:worker_threads'
 
@@ -14,9 +15,7 @@ let worker
 export default function unifiedPrettier(options) {
   const { Compiler } = this
 
-  if (!Compiler) {
-    throw new Error('unified-prettier needs another compiler to be registered first')
-  }
+  assert(Compiler, 'unified-prettier needs another compiler to be registered first')
 
   this.Compiler = (tree, file) => {
     /** @type {unknown} */

@@ -1,4 +1,4 @@
-import assert from 'node:assert/strict'
+import assert, { AssertionError } from 'node:assert/strict'
 import { test } from 'node:test'
 
 import { unified } from 'unified'
@@ -85,7 +85,11 @@ test('accept prettier options', () => {
 test('error if there is no compiler', () => {
   assert.throws(
     () => unified().use(unifiedPrettier).freeze(),
-    new Error('unified-prettier needs another compiler to be registered first')
+    new AssertionError({
+      expected: true,
+      message: 'unified-prettier needs another compiler to be registered first',
+      operator: '=='
+    })
   )
 })
 
