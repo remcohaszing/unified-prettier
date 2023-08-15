@@ -11,33 +11,21 @@ import unifiedPrettier from './index.js'
  * @property {string} value
  */
 
-/**
- * @this {import('unified').FrozenProcessor<void, Root, Root>}
- */
-function valueStringify() {
-  this.Compiler = (node) => node.value
-}
-
-/**
- * @this {import('unified').FrozenProcessor<void, Root, Root>}
- */
-function valueStringifyClass() {
-  this.Compiler = class {
-    /**
-     * @param {Root} node
-     *   The node to compile.
-     */
-    constructor(node) {
-      this.node = node
-    }
-
-    compile() {
-      return this.node.value
-    }
+// @ts-expect-error Probably related to https://github.com/microsoft/TypeScript/issues/55197
+const valueStringify = /** @type {import('unified').Plugin<[], Root, string>} */ (
+  function valueStringify() {
+    this.compiler = (node) => /** @type {Root} */ (node).value
   }
-}
+)
 
-test('function compiler', () => {
+// @ts-expect-error Probably related to https://github.com/microsoft/TypeScript/issues/55197
+const valueStringifyUpperCase = /** @type {import('unified').Plugin<[], Root, string>} */ (
+  function valueStringifyUpperCase() {
+    this.Compiler = (node) => /** @type {Root} */ (node).value
+  }
+)
+
+test('lower case compiler', () => {
   const result = unified()
     .use(valueStringify)
     .use(unifiedPrettier)
@@ -46,9 +34,9 @@ test('function compiler', () => {
   assert.equal(result, '**example**\n')
 })
 
-test('class compiler', () => {
+test('upper case compiler', () => {
   const result = unified()
-    .use(valueStringifyClass)
+    .use(valueStringifyUpperCase)
     .use(unifiedPrettier)
     .stringify({ type: 'root', value: '__example__\n\n' }, { path: 'markdown.md' })
 

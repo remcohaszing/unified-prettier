@@ -2,5 +2,6 @@ root: true
 extends:
   - remcohaszing
 rules:
-  new-cap: off
+  func-style: off
+  no-invalid-this: off
   import/no-extraneous-dependencies: off

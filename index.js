@@ -10,22 +10,16 @@ let worker
  *
  * @param {import('prettier').Options | undefined} [options]
  *   Options to pass to Prettier.
- * @this {import('unified').FrozenProcessor}
+ * @this {import('unified').Processor}
  */
 export default function unifiedPrettier(options) {
-  const { Compiler } = this
+  const compiler = this.compiler || this.Compiler
 
-  assert(Compiler, 'unified-prettier needs another compiler to be registered first')
+  assert(compiler, 'unified-prettier needs another compiler to be registered first')
 
-  this.Compiler = (tree, file) => {
-    /** @type {unknown} */
-    let content
-    if (Compiler.prototype?.compile) {
-      const compiler = new /** @type {any} */ (Compiler)(tree, file)
-      content = compiler.compile()
-    } else {
-      content = /** @type {import('unified').CompilerFunction} */ (Compiler)(tree, file)
-    }
+  this.Compiler = undefined
+  this.compiler = (tree, file) => {
+    const content = compiler(tree, file)
 
     const filepath = resolve(file.cwd, file.path)
 

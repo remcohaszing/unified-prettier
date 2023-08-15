@@ -1,5 +1,5 @@
 import { type Options } from 'prettier'
-import { type FrozenProcessor } from 'unified'
+import { type Plugin } from 'unified'
 
 /**
  * A unified plugin to format output using Prettier.
@@ -7,7 +7,6 @@ import { type FrozenProcessor } from 'unified'
  * @param options
  *   Options to pass to Prettier.
  */
-export default function unifiedPrettier<Processor extends FrozenProcessor<void, void, void, void>>(
-  this: Processor,
-  options?: Options | undefined
-): undefined
+declare const unifiedPrettier: Plugin<[Options?]>
+
+export default unifiedPrettier
