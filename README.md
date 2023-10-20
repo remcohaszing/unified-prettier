@@ -15,6 +15,7 @@ A [unified](https://unifiedjs.com) plugin to format output using [Prettier](http
 - [API](#api)
   - [Options](#options)
 - [Related projects](#related-projects)
+- [Compatibility](#compatibility)
 - [Acknowledgements](#acknowledgements)
 - [License](#license)
 
@@ -89,6 +90,10 @@ the options from the Prettier [configuration file](https://prettier.io/docs/en/c
 - [`unified`](https://unifiedjs.com) is a tool that transforms content with plugins.
 - [`unified-consistency`](https://github.com/remcohaszing/unified-consistency) can be used to report
   output inconsistencies.
+
+## Compatibility
+
+This project is compatible with Node.js 16 or greater, Prettier 3, and unified 11.
 
 ## Acknowledgements
 
