@@ -1,28 +1,21 @@
 import assert, { AssertionError } from 'node:assert/strict'
 import { test } from 'node:test'
 
-import { unified } from 'unified'
+import { type Plugin, unified } from 'unified'
 import unifiedPrettier from 'unified-prettier'
 
-/**
- * @typedef Root
- * @property {'root'} type
- * @property {string} value
- */
+interface Root {
+  type: 'root'
+  value: string
+}
 
-// @ts-expect-error Probably related to https://github.com/microsoft/TypeScript/issues/55197
-const valueStringify = /** @type {import('unified').Plugin<[], Root, string>} */ (
-  function valueStringify() {
-    this.compiler = (node) => /** @type {Root} */ (node).value
-  }
-)
+const valueStringify: Plugin<[], Root, string> = function valueStringify() {
+  this.compiler = (node) => (node as Root).value
+}
 
-// @ts-expect-error Probably related to https://github.com/microsoft/TypeScript/issues/55197
-const valueStringifyUpperCase = /** @type {import('unified').Plugin<[], Root, string>} */ (
-  function valueStringifyUpperCase() {
-    this.Compiler = (node) => /** @type {Root} */ (node).value
-  }
-)
+const valueStringifyUpperCase: Plugin<[], Root, string> = function valueStringifyUpperCase() {
+  this.Compiler = (node) => (node as Root).value
+}
 
 test('lower case compiler', () => {
   const result = unified()

@@ -19,14 +19,17 @@
   "author": "Remco Haszing <remcohaszing@gmail.com>",
   "sideEffects": false,
   "type": "module",
-  "exports": "./index.js",
+  "main": "./dist/unified-prettier.js",
+  "exports": "./dist/unified-prettier.js",
   "files": [
-    "index.js",
-    "index.d.ts",
-    "worker.js"
+    "src",
+    "dist",
+    "!test*"
   ],
   "scripts": {
-    "test": "c8 node test.js"
+    "prepack": "tsc --build",
+    "pretest": "tsc --build",
+    "test": "c8 node --enable-source-maps dist/test.js"
   },
   "dependencies": {
     "unified": "^11.0.0"

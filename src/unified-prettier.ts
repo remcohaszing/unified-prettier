@@ -2,17 +2,17 @@ import assert from 'node:assert/strict'
 import { resolve } from 'node:path'
 import { MessageChannel, receiveMessageOnPort, Worker } from 'node:worker_threads'
 
-/** @type {Worker} */
-let worker
+import { type Options } from 'prettier'
+import { type Plugin } from 'unified'
+
+import { type Payload, type Response } from './worker.js'
+
+let worker: Worker
 
 /**
  * A unified plugin to format output using Prettier.
- *
- * @param {import('prettier').Options | undefined} [options]
- *   Options to pass to Prettier.
- * @this {import('unified').Processor}
  */
-export default function unifiedPrettier(options) {
+const unifiedPrettier: Plugin<[Options?]> = function unifiedPrettier(options) {
   const compiler = this.compiler || this.Compiler
 
   assert(compiler, 'unified-prettier needs another compiler to be registered first')
@@ -32,21 +32,21 @@ export default function unifiedPrettier(options) {
     }
 
     worker.postMessage(
-      /** @type {import('./worker.js').Payload} */ ({
+      {
         content: String(content),
         filepath,
         options,
         port: workerPort,
         signal
-      }),
+      } satisfies Payload,
       [workerPort]
     )
 
     Atomics.wait(signal, 0, 0)
 
-    const { message } = /** @type {{ message: import('./worker.js').Response }} */ (
-      receiveMessageOnPort(localPort)
-    )
+    const { message } = receiveMessageOnPort(localPort) as {
+      message: Response
+    }
 
     if ('error' in message) {
       throw message.error
@@ -55,3 +55,5 @@ export default function unifiedPrettier(options) {
     return message.result
   }
 }
+
+export default unifiedPrettier

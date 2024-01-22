@@ -1,11 +1,14 @@
 {
-  "exclude": ["coverage"],
   "compilerOptions": {
-    "checkJs": true,
+    "composite": true,
     "declaration": true,
+    "declarationMap": true,
     "module": "node16",
-    "noEmit": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "sourceMap": true,
     "strict": true,
+    "stripInternal": true,
     "target": "es2022"
   }
 }

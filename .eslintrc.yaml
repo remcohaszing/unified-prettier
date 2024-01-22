@@ -3,5 +3,6 @@ extends:
   - remcohaszing
 rules:
   func-style: off
-  no-invalid-this: off
+  '@typescript-eslint/no-invalid-this': off
   import/no-extraneous-dependencies: off
+  jsdoc/require-jsdoc: off
