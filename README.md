@@ -4,20 +4,19 @@
 [![npm version](https://img.shields.io/npm/v/unified-prettier)](https://www.npmjs.com/package/unified-prettier)
 [![npm downloads](https://img.shields.io/npm/dm/unified-prettier)](https://www.npmjs.com/package/unified-prettier)
 [![codecov](https://codecov.io/gh/remcohaszing/unified-prettier/branch/main/graph/badge.svg)](https://codecov.io/gh/remcohaszing/unified-prettier)
-[![prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://prettier.io)
 
 A [unified](https://unifiedjs.com) plugin to format output using [Prettier](https://prettier.io/).
 
 ## Table of Contents
 
-- [Installation](#installation)
-- [Usage](#usage)
-- [API](#api)
-  - [Options](#options)
-- [Related projects](#related-projects)
-- [Compatibility](#compatibility)
-- [Acknowledgements](#acknowledgements)
-- [License](#license)
+* [Installation](#installation)
+* [Usage](#usage)
+* [API](#api)
+  * [Options](#options)
+* [Related projects](#related-projects)
+* [Compatibility](#compatibility)
+* [Acknowledgements](#acknowledgements)
+* [License](#license)
 
 ## Installation
 
@@ -86,9 +85,9 @@ the options from the Prettier [configuration file](https://prettier.io/docs/en/c
 
 ## Related projects
 
-- [`prettier`](https://prettier.io) is an opiniated code formatter.
-- [`unified`](https://unifiedjs.com) is a tool that transforms content with plugins.
-- [`unified-consistency`](https://github.com/remcohaszing/unified-consistency) can be used to report
+* [`prettier`](https://prettier.io) is an opiniated code formatter.
+* [`unified`](https://unifiedjs.com) is a tool that transforms content with plugins.
+* [`unified-consistency`](https://github.com/remcohaszing/unified-consistency) can be used to report
   output inconsistencies.
 
 ## Compatibility
