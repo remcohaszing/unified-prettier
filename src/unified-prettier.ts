@@ -21,6 +21,10 @@ const unifiedPrettier: Plugin<[Options?]> = function unifiedPrettier(options) {
   this.compiler = (tree, file) => {
     const content = compiler(tree, file)
 
+    if (!file.path) {
+      return content
+    }
+
     const filepath = resolve(file.cwd, file.path)
 
     const signal = new Int32Array(new SharedArrayBuffer(4))

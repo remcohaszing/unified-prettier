@@ -53,6 +53,15 @@ test('ignore missing prettier parser', () => {
   assert.equal(result, '__example__\n\n')
 })
 
+test('ignore missing file', () => {
+  const result = unified()
+    .use(valueStringify)
+    .use(unifiedPrettier)
+    .stringify({ type: 'root', value: '__example__\n\n' })
+
+  assert.equal(result, '__example__\n\n')
+})
+
 test('accept prettier options', () => {
   const result = unified()
     .use(valueStringify)
