@@ -1,3 +1,2 @@
 plugins:
-  - - remark-toc
-    - tight: true
+  - remark-preset-remcohaszing

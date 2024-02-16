@@ -32,8 +32,9 @@ It’s intended to work with
 such as [`remark-cli`](https://github.com/remarkjs/remark/tree/main/packages/remark-cli) and
 [`rehype-cli`](https://github.com/rehypejs/rehype/tree/main/packages/rehype-cli).
 
-In your [configuration file](https://github.com/unifiedjs/unified-engine/blob/main/doc/configure.md)
-file, add `unified-prettier` to the plugins:
+In your
+[configuration file](https://github.com/unifiedjs/unified-engine/blob/main/doc/configure.md), add
+`unified-prettier` to the plugins:
 
 ```json
 {
