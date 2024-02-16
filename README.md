@@ -41,7 +41,8 @@ file, add `unified-prettier` to the plugins:
 }
 ```
 
-It can also be used programmatically.
+It can also be used programmatically. Although you’re probably better off passing the output value
+to Prettier directly.
 
 The following example formats the readme using Prettier.
 
