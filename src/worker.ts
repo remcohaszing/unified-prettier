@@ -5,16 +5,47 @@ import { format, getFileInfo, type Options, resolveConfig } from 'prettier'
 /**
  * @internal
  */
-export type Response = { error: unknown } | { result: string }
+export type Response =
+  | {
+      /**
+       * The error thas has occurred.
+       */
+      error: unknown
+    }
+  | {
+      /**
+       * The success result.
+       */
+      result: string
+    }
 
 /**
  * @internal
  */
 export interface Payload {
+  /**
+   * The content to format.
+   */
   content: string
+
+  /**
+   * The file path to use for looking up the Prettier configuration.
+   */
   filepath: string
+
+  /**
+   * Prettier options that were passed manually.
+   */
   options: Options | undefined
+
+  /**
+   * The port to use to communicate from a worker to the main thread.
+   */
   port: MessagePort
+
+  /**
+   * The signal to use to communicate from a worker to the main thread.
+   */
   signal: Int32Array
 }
 
