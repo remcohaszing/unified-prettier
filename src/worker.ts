@@ -72,7 +72,7 @@ parentPort!.addListener(
     }
 
     try {
-      port.postMessage(response, [])
+      port.postMessage(response)
     } finally {
       port.close()
       Atomics.store(signal, 0, 1)
