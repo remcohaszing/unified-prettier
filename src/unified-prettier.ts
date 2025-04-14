@@ -15,7 +15,7 @@ let worker: Worker
 const unifiedPrettier: Plugin<[Options?]> = function unifiedPrettier(options) {
   const compiler = this.compiler || this.Compiler
 
-  assert(compiler, 'unified-prettier needs another compiler to be registered first')
+  assert.ok(compiler, 'unified-prettier needs another compiler to be registered first')
 
   this.Compiler = undefined
   this.compiler = (tree, file) => {
