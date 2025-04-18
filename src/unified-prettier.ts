@@ -48,18 +48,13 @@ const unifiedPrettier: Plugin<[Options?]> = function unifiedPrettier(options) {
 
     Atomics.wait(signal, 0, 0)
 
-    const { message } = receiveMessageOnPort(localPort) as {
-      /**
-       * The response from the web worker.
-       */
-      message: Response
+    const response = receiveMessageOnPort(localPort)!.message as Response
+
+    if ('error' in response) {
+      throw response.error
     }
 
-    if ('error' in message) {
-      throw message.error
-    }
-
-    return message.result
+    return response.result
   }
 }
 
