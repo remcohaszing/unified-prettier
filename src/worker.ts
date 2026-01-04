@@ -1,6 +1,10 @@
-import { type MessagePort, parentPort } from 'node:worker_threads'
+import type { MessagePort } from 'node:worker_threads'
 
-import { format, getFileInfo, type Options, resolveConfig } from 'prettier'
+import type { Options } from 'prettier'
+
+import { parentPort } from 'node:worker_threads'
+
+import { format, getFileInfo, resolveConfig } from 'prettier'
 
 /**
  * @internal

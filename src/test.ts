@@ -1,7 +1,9 @@
+import type { Plugin } from 'unified'
+
 import assert, { AssertionError } from 'node:assert/strict'
 import { test } from 'node:test'
 
-import { type Plugin, unified } from 'unified'
+import { unified } from 'unified'
 import unifiedPrettier from 'unified-prettier'
 
 interface Root {

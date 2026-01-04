@@ -1,11 +1,11 @@
+import type { Options } from 'prettier'
+import type { Plugin } from 'unified'
+
+import type { Payload, Response } from './worker.js'
+
 import assert from 'node:assert/strict'
 import { resolve } from 'node:path'
 import { MessageChannel, receiveMessageOnPort, Worker } from 'node:worker_threads'
-
-import { type Options } from 'prettier'
-import { type Plugin } from 'unified'
-
-import { type Payload, type Response } from './worker.js'
 
 let worker: Worker
 
